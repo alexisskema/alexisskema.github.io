@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Off route | Alexis Lekieffre</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..700&display=swap">
+<style>
+  :root {
+    color-scheme: light;
+    --paper: #FFFFFF;
+    --ink: #15171A;
+    --quiet: #5B6168;
+    --faint: #A4AAB0;
+    --hair: #E5E7EA;
+    --wash: #F2F3F5;
+    --orange: #FF5A1F;
+    --sans: "Bricolage Grotesque", system-ui, sans-serif;
+    --ease: cubic-bezier(0.3, 0.7, 0.2, 1);
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  body { display: grid; grid-template-rows: auto 1fr; min-height: 100vh; margin: 0; background: var(--paper); color: var(--ink); font: 400 1.0625rem/1.55 var(--sans); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; border-radius: 2px; }
+  header { display: flex; align-items: center; justify-content: space-between; height: 76px; padding: 0 max(24px, 6vw); }
+  header a { font-weight: 600; text-decoration: none; letter-spacing: -0.01em; }
+  header .lang { color: var(--quiet); font-size: 0.9375rem; }
+  main { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 560px); align-items: center; gap: 56px; padding: 0 max(24px, 6vw) 9vh; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 9px; margin: 0 0 20px; padding: 5px 13px 5px 11px; border: 1px solid var(--hair); border-radius: 999px; font-size: 0.875rem; font-weight: 500; }
+  .eyebrow i { width: 8px; height: 8px; border-radius: 50%; background: var(--orange); }
+  h1 { margin: 0; font-size: clamp(2.5rem, 5vw, 4.75rem); font-weight: 600; line-height: 0.98; letter-spacing: -0.035em; }
+  .lead { max-width: 36ch; margin: 22px 0 0; color: var(--quiet); font-size: 1.1875rem; }
+  .acts { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 22px; margin-top: 30px; }
+  .back { display: inline-flex; align-items: center; gap: 10px; padding: 12px 18px; border-radius: 999px; background: var(--ink); color: #FFFFFF; font-weight: 500; text-decoration: none; transition: transform 0.25s var(--ease); }
+  .back:hover { transform: translateX(-3px); }
+  .acts .mail { color: var(--quiet); font-size: 0.9375rem; text-underline-offset: 4px; text-decoration-color: var(--faint); }
+  .gps { overflow: hidden; border: 1px solid var(--hair); border-radius: 22px; background: #FFFFFF; box-shadow: 0 30px 80px rgba(21, 23, 26, 0.08); }
+  .gps svg { display: block; width: 100%; height: auto; }
+  .cm { fill: none; stroke: #E1E4E7; stroke-width: 0.8; }
+  .ci { fill: none; stroke: #C6CBD1; stroke-width: 1.1; }
+  .casing { fill: none; stroke: #FFFFFF; stroke-width: 8; stroke-linecap: round; }
+  .planned { fill: none; stroke: #8F969D; stroke-width: 1.7; stroke-dasharray: 0.5 6; stroke-linecap: round; }
+  .done { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linecap: round; }
+  .reroute { fill: none; stroke: var(--orange); stroke-width: 2; stroke-dasharray: 4 5; stroke-linecap: round; opacity: 0; transition: opacity 0.4s; }
+  .found .reroute { opacity: 1; animation: march 1s linear infinite; }
+  @keyframes march { to { stroke-dashoffset: -18; } }
+  .you { fill: var(--orange); stroke: #FFFFFF; stroke-width: 2.5; }
+  .halo { fill: var(--orange); transform-box: fill-box; transform-origin: center; animation: halo 2.4s ease-out infinite; }
+  @keyframes halo { from { transform: scale(0.7); opacity: 0.4; } to { transform: scale(3); opacity: 0; } }
+  .join { fill: #FFFFFF; stroke: var(--orange); stroke-width: 2; opacity: 0; transition: opacity 0.4s; }
+  .found .join { opacity: 1; }
+  .bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 16px; border-top: 1px solid var(--hair); font-size: 0.875rem; font-variant-numeric: tabular-nums; }
+  .bar .off { color: var(--quiet); }
+  .state { display: inline-flex; align-items: center; gap: 8px; font-weight: 500; }
+  .state i { width: 8px; height: 8px; border-radius: 50%; background: var(--orange); animation: blink 1s infinite; }
+  .found .state i { animation: none; }
+  @keyframes blink { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+  @media (max-width: 860px) {
+    main { grid-template-columns: minmax(0, 1fr); gap: 36px; padding: 4vh 16px 8vh; }
+    header { height: 64px; padding: 0 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <a href="/" class="home">Alexis Lekieffre</a>
+  <a class="lang" id="lang" href="?lang=fr" lang="fr" hreflang="fr">FR</a>
+</header>
+<main>
+  <section>
+    <p class="eyebrow"><i aria-hidden="true"></i><span data-fr="Erreur 404">Error 404</span></p>
+    <h1 data-fr="Vous êtes hors tracé.">You're off route.</h1>
+    <p class="lead" data-fr="Cette page n'est pas sur la carte. Elle a peut-être changé d'adresse, ou le lien contient une coquille. Le GPS s'en occupe.">This page isn't on the map. It may have moved, or the link has a typo. The GPS is on it.</p>
+    <p class="acts">
+      <a class="back home" href="/"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M12 7H2.5M6.5 3 2.5 7l4 4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-fr="Retour au tracé">Back to the trail</span></a>
+      <a class="mail" href="mailto:alexislekieffre@outlook.fr" data-fr="Ou écrire à Alexis">Or write to Alexis</a>
+    </p>
+  </section>
+  <figure class="gps" id="gps" aria-label="A map: the route, and you a little off it" data-fr-label="Une carte : le tracé, et vous, un peu à côté">
+    <svg id="map" viewBox="0 0 560 340" aria-hidden="true"></svg>
+    <figcaption class="bar"><span class="state" aria-live="polite"><i aria-hidden="true"></i><span id="state"></span></span><span class="off" id="off"></span></figcaption>
+  </figure>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>
+(() => {
+  "use strict";
+  const params = new URLSearchParams(location.search);
+  // French with ?lang=fr in the mockup, or under /fr/ once the site is live.
+  const FR = params.get("lang") === "fr" || location.pathname.startsWith("/fr/");
+  // Finding this page counts as an easter egg on the home page.
+  try { const f = JSON.parse(localStorage.getItem("eggs-found") || "[]"); if (!f.includes("notfound")) localStorage.setItem("eggs-found", JSON.stringify([...f, "notfound"])); } catch (e) { /* storage can be blocked */ }
+  const T = (en, fr) => (FR ? fr.replace(/ ([?!:;])/g, " $1") : en);
+  // The mockup sits next to portfolio.html; the live site serves its home at / and /fr/.
+  const live = true;
+  const home = live ? (FR ? "/?lang=fr" : "/") : `portfolio.html${FR ? "?lang=fr" : ""}`;
+  document.querySelectorAll("a.home").forEach((a) => { a.href = home; });
+  if (FR) {
+    document.documentElement.lang = "fr";
+    document.title = "Hors tracé | Alexis Lekieffre";
+    document.querySelectorAll("[data-fr]").forEach((n) => { n.textContent = T("", n.dataset.fr); });
+    document.querySelectorAll("[data-fr-label]").forEach((n) => n.setAttribute("aria-label", n.dataset.frLabel));
+    const l = document.getElementById("lang");
+    Object.assign(l, { textContent: "EN", href: live ? location.pathname : "?", lang: "en", hreflang: "en" });
+  } else if (live) {
+    document.getElementById("lang").href = `${location.pathname}?lang=fr`;
+  }
+
+  // A small topo map: seeded noise, contours every 50 m, a route, and you, a little off it.
+  const NS = "http://www.w3.org/2000/svg", svg = document.getElementById("map"), W = 560, H = 340, c = 5;
+  const el = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); (parent || svg).append(e); return e; };
+  let seed = 404;
+  const rnd = () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; };
+  const bumps = Array.from({ length: 14 }, () => [rnd() * W, rnd() * H, 60 + rnd() * 120, (rnd() - 0.35) * 420]);
+  const gw = Math.ceil(W / c) + 1, gh = Math.ceil(H / c) + 1, data = new Float64Array(gw * gh);
+  for (let j = 0; j < gh; j++) {
+    for (let i = 0; i < gw; i++) {
+      const x = i * c, y = j * c;
+      let h = 1500 + 0.9 * x - 0.4 * y;
+      for (const [bx, by, r, a] of bumps) h += a * Math.exp(-((x - bx) ** 2 + (y - by) ** 2) / (2 * r * r));
+      data[j * gw + i] = h;
+    }
+  }
+  const [lo, hi] = d3.extent(data), path = d3.geoPath(d3.geoIdentity().scale(c));
+  d3.contours().size([gw, gh]).thresholds(d3.range(Math.ceil(lo / 50) * 50, hi, 50))(data).forEach((ct) => el("path", { d: path(ct), class: ct.value % 250 === 0 ? "ci" : "cm" }));
+
+  const pts = [[-10, 250], [70, 236], [140, 190], [210, 200], [262, 150], [330, 140], [392, 96], [470, 92], [570, 40]];
+  const line = d3.line().curve(d3.curveCatmullRom.alpha(0.5))(pts);
+  el("path", { d: line, class: "casing" });
+  el("path", { d: line, class: "planned" });
+  const probe = el("path", { d: line, fill: "none", stroke: "none" }), len = probe.getTotalLength();
+  el("path", { d: line, class: "done", "stroke-dasharray": `${len * 0.43} ${len}` });
+  const you = { x: 300, y: 236 };
+  let best = 0, bd = Infinity;
+  for (let s = 0; s <= len; s += 2) { const p = probe.getPointAtLength(s), d = (p.x - you.x) ** 2 + (p.y - you.y) ** 2; if (d < bd) { bd = d; best = s; } }
+  const join = probe.getPointAtLength(best), mid = { x: (you.x + join.x) / 2 + 26, y: (you.y + join.y) / 2 + 8 };
+  el("path", { d: `M${you.x},${you.y}Q${mid.x},${mid.y} ${join.x.toFixed(1)},${join.y.toFixed(1)}`, class: "reroute" });
+  el("circle", { cx: join.x, cy: join.y, r: 5.5, class: "join" });
+  el("circle", { cx: you.x, cy: you.y, r: 7, class: "halo" });
+  el("circle", { cx: you.x, cy: you.y, r: 7, class: "you" });
+
+  // 1 px is about 4 m on this map.
+  const meters = Math.round((Math.sqrt(bd) * 4) / 10) * 10;
+  document.getElementById("off").textContent = T(`Off route by ${meters} m`, `Hors tracé de ${meters} m`);
+  const state = document.getElementById("state"), gps = document.getElementById("gps");
+  state.textContent = T("Recalculating…", "Recalcul de l'itinéraire…");
+  setTimeout(() => {
+    gps.classList.add("found");
+    state.textContent = T("Route found: back on the trail in 1 click", "Itinéraire trouvé : le tracé est à un clic");
+  }, matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 1800);
+})();
+</script>
+</body>
+</html>
