@@ -154,7 +154,7 @@
   state.textContent = T("Recalculating…", "Recalcul de l'itinéraire…");
   setTimeout(() => {
     gps.classList.add("found");
-    state.textContent = T("Route found: back on the route in 1 click", "Itinéraire trouvé : le tracé est à un clic");
+    state.textContent = T("Route found: one click and you're back on track", "Itinéraire trouvé : le tracé est à un clic");
   }, matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 1800);
 })();
 </script>
